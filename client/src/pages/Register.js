@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from '../assets/wrappers/RegisterPage'
-import {Logo} from '../components'
+import {Logo,FormRow,Alert} from '../components'
 import { useState,useEffect } from 'react'
 
 const initialState={
@@ -8,6 +8,7 @@ const initialState={
   email:'',
   password:'',
   isMember:true,
+  showAlert: true,
 }
 
 
@@ -27,18 +28,29 @@ function Register() {
       <form onSubmit={onSubmit} className="form">
       <Logo/>
       <h3>Login</h3>
+      {values.showAlert && <Alert/>}
       {/* name field */}
-      <div className="form-row">
-        <label htmlFor="name" className="form-label">
-          name
-        </label>
-        <input type="text" 
-        className="form-input"
-        name='name'
-        value={values.name}
-        onChange={handleChange}
-        />
-      </div>
+      <FormRow
+       type='text'
+       name='name'
+       value={values.name}
+       handleChange={handleChange}
+       />
+      {/* email input */}
+      <FormRow
+       type='email'
+       name= 'email'
+       value= {values.email}
+       handleChange={handleChange}
+       />
+       {/* password input */}
+       <FormRow
+       type='password'
+       name= 'password'
+       value= {values.password}
+       handleChange={handleChange}
+       />
+
       <button type='submit' className="btn btn-block">
         submit
       </button>
